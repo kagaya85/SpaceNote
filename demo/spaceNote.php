@@ -88,19 +88,20 @@ class SpaceNote{
         }
     }
 
-    function returnXMLData(){
+    function returnJsonData(){
         echo "return begin"."<br>";
         global $dataBuf;
-        $arrlength = count($dataBuf);
-        echo "<?xml version='1.0' encoding='UTF-8'?>";
-        for($i = 0;$i<$arrlength;$i++){
-            echo "<ITEM>";
-            foreach ($dataBuf as $e) {
-                $e->show_data();
-            }
-            echo "</ITEM>";
-        }
-        echo "return end"."<br>";
+        // $arrlength = count($dataBuf);
+        echo json_encode($dataBuf);
+        // echo "<?xml version='1.0' encoding='UTF-8'";
+        // for($i = 0;$i<$arrlength;$i++){
+        //     echo "<ITEM>";
+        //     foreach ($dataBuf as $e) {
+        //         $e->show_data();
+        //     }
+        //     echo "</ITEM>";
+        // }
+        // echo "return end"."<br>";
     }
 
     function __destruct()

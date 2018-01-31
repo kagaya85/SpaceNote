@@ -91,7 +91,6 @@ class SpaceNote{
     function returnXMLData(){
         echo "return begin"."<br>";
         global $dataBuf;
-        echo var_dump($databuf);
         $arrlength = count($dataBuf);
         echo "<?xml version='1.0' encoding='UTF-8'?>";
         for($i = 0;$i<$arrlength;$i++){

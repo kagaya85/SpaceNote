@@ -47,7 +47,7 @@ class SpaceNote{
     }
 
     function loadData($lngFrom,$lngTo,$latFrom,$latTo){
-        echo "loadData start<br>";
+        // echo "loadData start<br>";
         global $dataBuf;
         $sql = "SELECT * FROM `spaceNoteData_demo` 
         WHERE Longitude > $lngFrom and Longitude <= $lngTo and Latitude > $latFrom and Latitude <= $latTo;";
@@ -60,21 +60,30 @@ class SpaceNote{
         $i = 0;
         while($row = mysqli_fetch_array($result))
         {
-            $temp = new Item($row['UID'],$row['Uname'],$row['Note'],$row['Longitude'],$row['Latitude'],$row['Altitude'],$row['Time']);
-            //echo var_dump($temp);
-            $dataBuf[$i] = $temp;
-            $i++;
-           echo "dataBuf:";
-           echo var_dump($dataBuf);
+            //$temp = new Item($row['UID'],$row['Uname'],$row['Note'],$row['Longitude'],$row['Latitude'],$row['Altitude'],$row['Time']);
+            //先将结果放入一维数组中
+            $temp["UID"] = $row['UID'];
+            $temp["Uname"] = $row['Uname'];
+            $temp["Note"] = $row['Note'];
+            $temp["Lng"] = $row['Longitude'];
+            $temp["Lat"] = $row['Latitude'];
+            $temp["Alt"] = $row['Altitude'];
+            $temp["Time"] = $row['Time'];
+            //放入二维数组dataBuf中
+            $dataBuf[$i++] = $temp;
+//           echo "dataBuf:";
+        //    echo var_dump($dataBuf);
         }
-        echo "show begin:"."<br>";        
-        foreach ($dataBuf as $e) {
-            $e->show_data();
-        }
-        echo "<br>"."show end"."<br>";
+        //输出json格式字符串
+        echo json_encode($dataBuf);        
+        // echo "show begin:"."<br>";        
+        // foreach ($dataBuf as $e) {
+        //     $e->show_data();
+        // }
+        // echo "<br>"."show end"."<br>";
         //need to debug
         mysqli_free_result($result);
-        echo "lodaData end<br>";
+        // echo "lodaData end<br>";
     }
 
     function saveData($item){
@@ -86,22 +95,6 @@ class SpaceNote{
         }else{
             echo "Data save successfully!!!";
         }
-    }
-
-    function returnJsonData(){
-        echo "return begin"."<br>";
-        global $dataBuf;
-        // $arrlength = count($dataBuf);
-        echo json_encode($dataBuf);
-        // echo "<?xml version='1.0' encoding='UTF-8'";
-        // for($i = 0;$i<$arrlength;$i++){
-        //     echo "<ITEM>";
-        //     foreach ($dataBuf as $e) {
-        //         $e->show_data();
-        //     }
-        //     echo "</ITEM>";
-        // }
-        // echo "return end"."<br>";
     }
 
     function __destruct()

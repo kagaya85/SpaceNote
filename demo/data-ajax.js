@@ -31,9 +31,10 @@ function showData(Lng, Lat, Ref = false) {
         dataType: "json",
         async: true,
         data: "Longitude=Lng&Latitude=Lat",
-        success: function(data){
+        success: function(data,state){
             $(".nearby-data").empty();
             jsonData = eval(data);      //将data字符串转换为json数组            
+            $(".nearby-data").append("<tr><th>UID</th><th>Uname</th><th>Note</th><th>Lng</th><th>Lat</th><th>Alt</th><th>Time</th></tr>");
             $.each(jsonData,function(index,elem){
                 $(".nearby-data").append("<tr>");
                 $(".nearby-data").append("<td>" + jsonData[index].UID + "</td>");
@@ -43,66 +44,13 @@ function showData(Lng, Lat, Ref = false) {
                 $(".nearby-data").append("<td>" + jsonData[index].Lat + "</td>");
                 $(".nearby-data").append("<td>" + jsonData[index].Alt + "</td>");
                 $(".nearby-data").append("<td>" + jsonData[index].Time + "</td>");
-                $(".nearby-data").append("</td>");
+                $(".nearby-data").append("</tr>");
             })
             
         }
     })
 
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            //content = "";
-            alert(xmlhttp.responseXML)
-            item = xmlhttp.response.documentElement.getElementsByTagName("ITEM");
-            for (let i = 0; i < data.length; i++) {//循环输出每行
-                content += "<tr>"
-                elem = item[i].getElementsByTagName("UID");
-                try {
-                    content += "<td>"+elem[0].firstChild.nodeValue+"</td>";
-                } catch (error) {
-                    content += "<td>"+"</td>";                    
-                }
-                elem = item[i].getElementsByTagName("Uname");
-                try {
-                    content += "<td>"+elem[0].firstChild.nodeValue+"</td>";
-                } catch (error) {
-                    content += "<td>"+"</td>";                    
-                }
-                elem = item[i].getElementsByTagName("Note");
-                try {
-                    content += "<td>"+elem[0].firstChild.nodeValue+"</td>";
-                } catch (error) {
-                    content += "<td>"+"</td>";                    
-                }
-                elem = item[i].getElementsByTagName("Longitude");
-                try {
-                    content += "<td>"+elem[0].firstChild.nodeValue+"</td>";
-                } catch (error) {
-                    content += "<td>"+"</td>";                    
-                }
-                elem = item[i].getElementsByTagName("Latitude");
-                try {
-                    content += "<td>"+elem[0].firstChild.nodeValue+"</td>";
-                } catch (error) {
-                    content += "<td>"+"</td>";                    
-                }
-                elem = item[i].getElementsByTagName("Altitude");
-                try {
-                    content += "<td>"+elem[0].firstChild.nodeValue+"</td>";
-                } catch (error) {
-                    content += "<td>"+"</td>";                    
-                }
-                elem = item[i].getElementsByTagName("Time");
-                try {
-                    content += "<td>"+elem[0].firstChild.nodeValue+"</td>";
-                } catch (error) {
-                    content += "<td>"+"</td>";                    
-                }
-            content += "</tr>";         
-            }//end of for
-            document.getElementById("nearby-data").innerHTML = content;
-        }
-    }
+    
     // xmlhttp.open("GET", downloadURL + "?Longitude=" + Lng + "&Latitude=" + Lat + "&sid=" + Math.random(), true);
     // xmlhttp.send();
 }

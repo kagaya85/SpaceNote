@@ -99,7 +99,7 @@ class SpaceNote{
 
     function __destruct()
     {
-        mysqli_close($this->db->conn);
+        //mysqli_close($this->db->conn);
     }
 }
 ?>

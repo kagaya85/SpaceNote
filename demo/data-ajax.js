@@ -23,7 +23,7 @@ function showData(Lng, Lat, Ref = false) {
         dataType: "json",
         async: true,
         data: "Longitude="+Lng+"&Latitude="+Lat,
-        success: function(data,state){
+        success: function(data,status){
             jsonData = eval(data);      //将data字符串转换为json数组            
             //将数据插入地图时只需要遍历jsonData 替换下面这段代码
 
@@ -47,24 +47,25 @@ function showData(Lng, Lat, Ref = false) {
         error: function (XMLHttpRequest, textStatus, errorThrown){
             $(".nearby-data").append("<tr><td>status:" + XMLHttpRequest.status + "</td><td>" + textStatus + "</td></tr>");    
         }
-    })
+    });
 
     
     // xmlhttp.open("GET", downloadURL + "?Longitude=" + Lng + "&Latitude=" + Lat + "&sid=" + Math.random(), true);
     // xmlhttp.send();
 }
 
-//暂未测试
+//
 function uploadData(UID, Uname, Note, Lng, Lat, Alt) {
-    var xmlhttp;
-    var data = "?UID=" + UID + "&Uname=" + Uname + "&Note=" + Note + "&Lng=" + Lon + "&Lat=" + Lat + "&Alt=" + Alt;
-    xmlhttp = getXMLHttpRequest();
-
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            document.getElementById("upload-result").innerHTML = xmlhttp.responseText;
+    $.ajax({
+        url: uploadURL,        
+        type: "post",
+        async: true,
+        data: {"UID": UID, "Uname": Uname,"Note" : Note, "Lng": Lng, "Lat": Lat, "Alt": Alt},
+        success: function(result){
+            alert(result);
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown){
+            alert(textStatus);
         }
-    }
-    xmlhttp.open("POST", uploadURL, true);
-    xmlhttp.send(data);
+    });
 }

@@ -45,8 +45,10 @@ function showData(Lng, Lat, Ref = false) {
                 $(".nearby-data").append("<td>" + jsonData[index].Alt + "</td>");
                 $(".nearby-data").append("<td>" + jsonData[index].Time + "</td>");
                 $(".nearby-data").append("</tr>");
-            })
-            
+            })        
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown){
+            $(".nearby-data").append("<tr><td>status:" + XMLHttpRequest.status + "</td><td>" + textStatus + "</td></tr>");    
         }
     })
 

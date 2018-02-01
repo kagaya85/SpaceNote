@@ -18,7 +18,7 @@
         }
         function __destruct()
         {   //disconnect
-           mysqli_colse($this->conn);
+           //mysqli_colse($this->conn);//无此函数
         }
     
     }

@@ -30,7 +30,7 @@ function showData(Lng, Lat, Ref = false) {
         type: "get",
         dataType: "json",
         async: true,
-        data: "Longitude=Lng&Latitude=Lat",
+        data: "Longitude="+Lng+"&Latitude="+Lat,
         success: function(data,state){
             $(".nearby-data").empty();
             jsonData = eval(data);      //将data字符串转换为json数组            

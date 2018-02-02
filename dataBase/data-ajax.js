@@ -22,7 +22,7 @@ function loadData(Lng, Lat, Rng, Ref = false) { //Rng为距离中心点的距离
         type: "get",
         dataType: "json",
         async: true,
-        data: "Longitude="+Lng+"&Latitude="+Lat+"Range="+Rng,
+        data: "Longitude="+Lng+"&Latitude="+Lat+"&Range="+Rng,
         success: function(data,status){
             jsonData = eval(data);      //将data字符串转换为json数组            
             //将数据插入地图时只需要遍历jsonData 替换下面这段代码

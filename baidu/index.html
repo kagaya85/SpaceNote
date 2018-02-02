@@ -64,7 +64,9 @@
 	var map = new BMap.Map("container");
 	// 创建地图实例  
 
-	var Bcenter = new BMap.Point(center.Lng,center.Lat);
+//	var Bcenter = new BMap.Point(center.Lng,center.Lat);
+	var Bcenter = new BMap.Point(121.214261,31.31287181);
+	
 	// 创建点坐标  
 	map.centerAndZoom(center, 15);
 	// 初始化地图，设置中心点坐标和地图级别  
@@ -202,7 +204,7 @@
 	}
 	// 添加自定义覆盖物  
 	var range = 1;//设置范围
-	loadData(center.Lng, center.Lat, range);
+	loadData(center.Lng, center.Lat, range); //加载数据点
 
 </script>  
 </body>  

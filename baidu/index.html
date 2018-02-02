@@ -155,9 +155,10 @@
 	}
 
 	function convertPointG2B(Gpoint) {
-		var Cpoint = coordtransform.wgs84togcj02(Gpoint.lag, Gpoint.lat);
-		var Bpoint = coordtransform.gcj02tobd09(Cpoint.lag, Cpoint.lat);
-		return Bpoint;
+		var Cpoint_arr = coordtransform.wgs84togcj02(Gpoint.lng, Gpoint.lat);
+		var Bpoint_arr = coordtransform.gcj02tobd09(Cpoint_arr[0], Cpoint_arr[1]);
+		var Bpoint = new BMap.Point(Bpoint_arr[0],Bpoint_arr[1]);
+		return Bpoint ;
 	}
 
 </script>
@@ -190,6 +191,7 @@
 	newMsgbox(map,Bcenter,100 ,100,"原始坐标（WGS84）","");
 	var result = convertPointG2B(Bcenter);
 	newMsgbox(map,result,100 ,100,"转换坐标（BD）","");
+
 
 </script>  
 </body>  

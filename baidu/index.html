@@ -56,6 +56,7 @@
 <body>  
 <div id="container"></div> 
 <script type="text/javascript">
+	//设置一个坐标点对象
 	function Point(Lng, Lat){
 		this.Lng = Lng;
 		this.Lat = Lat;
@@ -64,11 +65,10 @@
 	var map = new BMap.Map("container");
 	// 创建地图实例  
 
-//	var Bcenter = new BMap.Point(center.Lng,center.Lat);
-	var Bcenter = new BMap.Point(121.214261,31.31287181);
+	var Bcenter = new BMap.Point(center.Lng,center.Lat);
 	
 	// 创建点坐标  
-	map.centerAndZoom(center, 15);
+	map.centerAndZoom(Bcenter, 15);
 	// 初始化地图，设置中心点坐标和地图级别  
 	
 	alerted = 0;

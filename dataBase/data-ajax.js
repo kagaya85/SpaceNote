@@ -5,8 +5,8 @@
 //上传数据部分暂未完成测试
 //kagaya 2018年2月1日
 //////////////////////////////////////
-const uploadURL = "upload.php";
-const downloadURL = "download.php";
+const uploadURL = "../dataBase/upload.php";
+const downloadURL = "../dataBase/download.php";
 
 function loadData(Lng, Lat, Rng, Ref = false) { //Rng为距离中心点的距离（水平竖直方向）
     var jsonData;//可设为全局变量

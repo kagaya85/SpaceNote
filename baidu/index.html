@@ -39,16 +39,16 @@
 	}
 
 	.textbox{
-		width: 200px;
-		height: 145px;
+		/*width: 200px;*/
+		/*height: 145px;*/
 		background-color: white;
 		border-radius: 10px;
 		box-shadow: 0px 0px 20px 5px #888888;
 	}
 
 	.text{
-		width: 160px;
-		height: 125px;
+		/*width: 160px;*/
+		/*height: 125px;*/
 		margin: 0;
 		position: relative;
 		left: 20px;
@@ -77,7 +77,7 @@
 	    this._height = height;
 	    this._text = text;
 	    this._imgsrc = imgsrc;
-	    this._length = height;
+	    this._length = width;
 	}
 	// 继承API的BMap.Overlay
 	Msgbox.prototype = new BMap.Overlay();
@@ -110,8 +110,9 @@
 
 	    var textbox = document.createElement("div");
 	    textbox.className = textbox.className + " textbox";
-	    textbox.style.height = this._height + "px";
 	    textbox.style.width = this._width + "px";
+	    if(this._height != 0)
+	    	textbox.style.height = this._height + "px";
 
 
 	    var text = document.createElement("p");
@@ -129,7 +130,7 @@
 	    div.appendChild(arrow);
 	    div.appendChild(imgdiv);
 
-	    div.style.width = this._width + "px";
+	    div.style.width = this._length + "px";
 	    div.style.height = this._length + "px";
 
 
@@ -214,11 +215,11 @@
 	loadData(center.Lng, center.Lat, range); //加载数据点
 
 	//
-	newMsgbox(map,Bcenter,100 ,200,"原始坐标（WGS84）","1.png");
+	newMsgbox(map,Bcenter,100 ,100,"原始坐标（WGS84）","1.png");
 	var result = convertPointG2B(Bcenter);
-	newMsgbox(map,result,100 ,200,"转换坐标（BD）","2.png");
+	newMsgbox(map,result,100 ,100,"转换坐标（BD）","2.png");
 	var point2 = BMap.Point(result.lng+0.1,result.lat+0.1);
-	newMsgbox(map,point2,100 ,200,"测试","3.png");
+	newMsgbox(map,point2,100 ,100,"测试","3.png");
 	map.setCenter(result);
 	map.panTo(result);
 </script>  
